@@ -1,3 +1,4 @@
+import { Events } from "./Events";
 import Helpers from "./Helpers";
 import LevelMap from "./LevelMap";
 
@@ -34,7 +35,7 @@ export default class NewClass extends cc.Component {
         const nextPos: cc.Vec2 = this.getCurrentTargetPos()
 
         if (!nextPos) {
-            this.node.emit('finish')
+            this.node.emit(Events.ENEMY_FINISH)
             this.node.destroy()
         } else {
             Helpers.rotateTo(this.node, 900, nextPos)
