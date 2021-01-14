@@ -1,3 +1,4 @@
+import Helpers from "./Helpers";
 import LevelMap from "./LevelMap";
 
 const { ccclass, property } = cc._decorator;
@@ -18,6 +19,7 @@ export default class NewClass extends cc.Component {
 
     targets: Target[] = []
     currentTargetName: number = 0
+    rotationSpeed: number = 9
 
     // onLoad () {}
 
@@ -35,21 +37,22 @@ export default class NewClass extends cc.Component {
             this.node.emit('finish')
             this.node.destroy()
         } else {
+            Helpers.rotateTo(this.node, 900, nextPos)
             this.moveTo(nextPos).then(() => {
                 this.moveToNextTarget()
             })
         }
     }
 
-    moveTo(nexPos: cc.Vec2): Promise<number> {
-        const xDistance: number = nexPos.x - this.node.x
-        const yDistance: number = nexPos.y - this.node.y
+    moveTo(targetPos: cc.Vec2): Promise<number> {
+        const xDistance: number = targetPos.x - this.node.x
+        const yDistance: number = targetPos.y - this.node.y
         const distance: number = Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2))
 
         const time: number = distance / this.speed
         return new Promise<number>((resolve, reject) => {
-            const moveToAction: cc.ActionInterval = cc.moveTo(time, nexPos)
-            const sequence: cc.ActionInterval = cc.sequence(moveToAction, cc.callFunc(resolve))
+            const moveAction: cc.ActionInterval = cc.moveTo(time, targetPos)
+            const sequence: cc.ActionInterval = cc.sequence(moveAction, cc.callFunc(resolve))
             this.node.runAction(sequence)
         })
     }
