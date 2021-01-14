@@ -25,7 +25,7 @@ export default class Helpers {
     static rotateTo(node: cc.Node, speed: number, targetPos: cc.Vec2) { // tween
         const finalAngle: number = Helpers.getAngle(node.getPosition(), targetPos)
         const angleDiff: number = Math.abs(finalAngle - node.angle)
-        if (angleDiff === 0) return
+        if (!angleDiff) return
         const duration: number = angleDiff / speed
 
         node.runAction(cc.rotateTo(duration, finalAngle))

@@ -85,6 +85,9 @@
       },
       {
         "__id__": 23
+      },
+      {
+        "__id__": 24
       }
     ],
     "_prefab": null,
@@ -945,5 +948,18 @@
     "_originalWidth": 0,
     "_originalHeight": 0,
     "_id": "29zXboiXFBKoIV4PQ2liTe"
+  },
+  {
+    "__type__": "31dc1Okka1AdoVikunjezEX",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "levelMap": {
+      "__id__": 15
+    },
+    "_id": "ceiDD67tpJtJ3J903PEoXN"
   }
 ]

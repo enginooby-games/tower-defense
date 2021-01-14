@@ -14,7 +14,7 @@ export default class LevelMap extends cc.Component {
     tileSize: cc.Size // (pixels)
     mapSize: cc.Size // (tiles)
 
-    onLoad() {
+    init() {
         // attach components in engine instead to improve performance and avoid string references
         // this.tiledMap = this.node.getComponent(cc.TiledMap)
 
