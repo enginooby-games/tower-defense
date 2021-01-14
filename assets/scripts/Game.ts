@@ -1,6 +1,7 @@
 import { Events, PanelTouchData } from "./Events";
 import LevelMap from "./LevelMap";
 import PanelCreate from "./PanelCreate";
+import TowerSpawner from "./TowerSpawner";
 
 const { ccclass, property } = cc._decorator;
 
@@ -10,15 +11,19 @@ export default class Game extends cc.Component {
     levelMap: LevelMap = null
     @property(PanelCreate)
     panelCreate: PanelCreate = null
+    @property(TowerSpawner)
+    towerSpawner: TowerSpawner = null
 
     onLoad() {
         this.init()
         this.setEvents()
     }
 
+    // init all components here instead of onLoad to ensure the availabilities
     init() {
         this.levelMap.init()
         this.panelCreate.init(this.levelMap)
+        this.towerSpawner.init(this.levelMap)
     }
 
     setEvents() {
@@ -27,7 +32,9 @@ export default class Game extends cc.Component {
     }
 
     createTower(data: PanelTouchData) {
-
+        this.towerSpawner.createTower(data)
+        this.panelCreate.hide()
+        cc.log(data)
     }
 
     onMapTouch(event: cc.Event.EventTouch) {
