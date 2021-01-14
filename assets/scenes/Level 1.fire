@@ -72,16 +72,16 @@
         "__id__": 3
       },
       {
-        "__id__": 15
+        "__id__": 16
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 17
+        "__id__": 18
       },
       {
-        "__id__": 18
+        "__id__": 19
       }
     ],
     "_prefab": null,
@@ -160,6 +160,9 @@
     "_components": [
       {
         "__id__": 14
+      },
+      {
+        "__id__": 15
       }
     ],
     "_prefab": null,
@@ -212,7 +215,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "ground",
+    "_name": "Ground",
     "_objFlags": 0,
     "_parent": {
       "__id__": 3
@@ -270,7 +273,7 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "23TM81/blEVqBJNxPbC80i"
+    "_id": "273DtjP1RIeLZzPmSu1Wx4"
   },
   {
     "__type__": "cc.TiledLayer",
@@ -285,11 +288,11 @@
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
       }
     ],
-    "_id": "a4dxrIoSFEBa/VZmt5+Pku"
+    "_id": "c0Y9oo0rJCIJnG+v5754Gi"
   },
   {
     "__type__": "cc.Node",
-    "_name": "road",
+    "_name": "Road",
     "_objFlags": 0,
     "_parent": {
       "__id__": 3
@@ -347,7 +350,7 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "c2VQMAh3BBoZDiI5JVppqj"
+    "_id": "b5USy1iSlIS466ytb5UcIB"
   },
   {
     "__type__": "cc.TiledLayer",
@@ -362,11 +365,11 @@
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
       }
     ],
-    "_id": "64Aj8889pIj4IscmtkfEKC"
+    "_id": "3d+nRVojhICJ9EN4ux85kC"
   },
   {
     "__type__": "cc.Node",
-    "_name": "props",
+    "_name": "Props",
     "_objFlags": 0,
     "_parent": {
       "__id__": 3
@@ -424,7 +427,7 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "7ef/bDaCNLireWEMg2Ff6L"
+    "_id": "c0g9mmS3FP6o1QxhcDWJjJ"
   },
   {
     "__type__": "cc.TiledLayer",
@@ -439,11 +442,11 @@
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
       }
     ],
-    "_id": "aamw3vWEBPoamK/wlPmpyH"
+    "_id": "694+pi7oRMsZi5OZZtxDeF"
   },
   {
     "__type__": "cc.Node",
-    "_name": "towers",
+    "_name": "Towers",
     "_objFlags": 0,
     "_parent": {
       "__id__": 3
@@ -501,7 +504,7 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "07tIbjcftPG4U+AttAIvuJ"
+    "_id": "53XbHPkLxCRKe0FulKNc8u"
   },
   {
     "__type__": "cc.TiledLayer",
@@ -516,11 +519,11 @@
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
       }
     ],
-    "_id": "1eYMF9DYJDDL3v2ngg6Qqj"
+    "_id": "78CXAHVJFOtaWZUM0U3W0y"
   },
   {
     "__type__": "cc.Node",
-    "_name": "path",
+    "_name": "Path",
     "_objFlags": 0,
     "_parent": {
       "__id__": 3
@@ -578,7 +581,7 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "1azKWZbklBw5nXQbMUIFiy"
+    "_id": "22okhpL7BLUape2ZOKsRk0"
   },
   {
     "__type__": "cc.TiledObjectGroup",
@@ -588,7 +591,7 @@
       "__id__": 12
     },
     "_enabled": true,
-    "_id": "6bJDTTEZVCpox3H+7n7BAx"
+    "_id": "2586uZB51KKZkxLrON1gXS"
   },
   {
     "__type__": "cc.TiledMap",
@@ -604,6 +607,25 @@
     "_id": "faflNDYbtHP5RoSYjwpwpe"
   },
   {
+    "__type__": "7ea02SGsgxFLIHByko7f7Di",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 3
+    },
+    "_enabled": true,
+    "tiledMap": {
+      "__id__": 14
+    },
+    "roadLayer": {
+      "__id__": 7
+    },
+    "towersLayer": {
+      "__id__": 11
+    },
+    "_id": "dbWYCAHYBHU5VQIMa5gzlV"
+  },
+  {
     "__type__": "cc.Node",
     "_name": "Main Camera",
     "_objFlags": 0,
@@ -614,7 +636,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 16
+        "__id__": 17
       }
     ],
     "_prefab": null,
@@ -670,7 +692,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 15
+      "__id__": 16
     },
     "_enabled": true,
     "_cullingMask": 4294967295,
