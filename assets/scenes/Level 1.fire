@@ -1049,7 +1049,7 @@
     "levelMap": {
       "__id__": 15
     },
-    "speed": 250,
+    "speed": 125,
     "_id": "e1dyq6gc1JmptL8h2zYoAk"
   },
   {
@@ -1249,6 +1249,7 @@
       "__id__": 28
     },
     "_enabled": true,
+    "bulletPrefab": null,
     "_id": "cfQ3UYuA9LQaLv2JEmJy/1"
   },
   {

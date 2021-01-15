@@ -1,3 +1,4 @@
+import Bullet from "./Bullet";
 import Enemy from "./Enemy";
 import Helpers from "./Helpers";
 
@@ -5,8 +6,10 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class Tower extends cc.Component {
+    @property(cc.Prefab)
+    bulletPrefab: cc.Prefab = null
     // @property
-    reloadTime: number = 0.2
+    reloadTime: number = 0.5
 
     coord: cc.Vec2
     targets: Enemy[] = []
@@ -16,7 +19,7 @@ export default class Tower extends cc.Component {
     init(coord: cc.Vec2) {
         this.coord = coord
 
-        this.schedule(() => this.fire(), this.reloadTime)
+        this.schedule(() => this.shoot(), this.reloadTime)
     }
 
     start() {
@@ -37,12 +40,22 @@ export default class Tower extends cc.Component {
         }
     }
 
-    fire() {
+    shoot() {
         const currentTarget: Enemy = this.getClosestTarget()
         if (currentTarget) {
-            Helpers.rotateTo(this.node, currentTarget.node.getPosition(), 600, 90)
-            cc.log(this.node.angle)
+            const targetPos: cc.Vec2 = currentTarget.node.getPosition()
+            Helpers.rotateTo(this.node, targetPos, 800, 90).then(() => {
+                this.createBullet(targetPos)
+            })
         }
+    }
+    createBullet(targetPos: cc.Vec2) {
+        const bulletNode: cc.Node = cc.instantiate(this.bulletPrefab)
+        bulletNode.angle = this.node.angle - 180 // angle offset of the sprite frame
+        bulletNode.position = this.node.position
+        this.node.parent.addChild(bulletNode)
+
+        bulletNode.getComponent(Bullet).init(targetPos)
     }
 
     getClosestTarget(): Enemy | null {

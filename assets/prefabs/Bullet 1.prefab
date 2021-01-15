@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Tower 1",
+    "_name": "Bullet 1",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -42,8 +42,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 42,
-      "height": 55
+      "width": 17,
+      "height": 28
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -95,7 +95,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "1aeb0901-3787-4826-858b-d9391c58f366"
+      "__uuid__": "c24e78b7-fa2f-406a-8d8c-879d8d960e33"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -112,20 +112,17 @@
     "_id": ""
   },
   {
-    "__type__": "dcf73m94SFHwKCLCSWKgyqu",
+    "__type__": "0af4bBlqBFDLJ09p0gwKCcl",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "bulletPrefab": {
-      "__uuid__": "d36eb8d4-c637-4927-8b30-cd2b4c1fa960"
-    },
     "_id": ""
   },
   {
-    "__type__": "cc.CircleCollider",
+    "__type__": "cc.BoxCollider",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -138,7 +135,11 @@
       "x": 0,
       "y": 0
     },
-    "_radius": 400,
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 17,
+      "height": 28
+    },
     "_id": ""
   },
   {
@@ -147,7 +148,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "cceba4d5-a2f1-48ba-8f22-4ae279f84de6"
+      "__uuid__": "d36eb8d4-c637-4927-8b30-cd2b4c1fa960"
     },
     "fileId": "",
     "sync": false

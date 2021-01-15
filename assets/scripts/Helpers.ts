@@ -22,6 +22,10 @@ export default class Helpers {
         return -this.toDegree(Math.atan2(targetPos.y - currentPos.y, targetPos.x - currentPos.x))
     }
 
+    static getDistance(currentPos: cc.Vec2, targetPos: cc.Vec2): number {
+        return Math.sqrt(Math.pow(targetPos.x - currentPos.x, 2) + Math.pow(targetPos.y - currentPos.y, 2))
+    }
+
     static randomBetween(min: number, max: number): number {
         return min + Math.random() * (max - min)
     }
@@ -41,14 +45,29 @@ export default class Helpers {
 
     /* NODE OPERATIONS */
     /* @param offset: angle (degrees) different from front face to x+ axis */
-    static rotateTo(node: cc.Node, targetPos: cc.Vec2, speed: number, offset: number) { // tween
+    static rotateTo(node: cc.Node, targetPos: cc.Vec2, speed: number, offset: number): Promise<number> { // tween
         const dstAngle: number = Helpers.getAngle(node.getPosition(), targetPos) + offset
         const angleDiff: number = Math.abs(dstAngle - node.angle)
-        if (!angleDiff) return
-        const duration: number = angleDiff / speed
 
-        node.runAction(cc.rotateTo(duration, dstAngle))
+        return new Promise<number>((resolve, reject) => {
+            if (!angleDiff) resolve
+            const duration: number = angleDiff / speed
+            const rotateAction: cc.ActionInterval = cc.rotateTo(duration, dstAngle)
+            const sequence: cc.ActionInterval = cc.sequence(rotateAction, cc.callFunc(resolve))
+            node.runAction(sequence)
+        })
+    }
 
+    static moveTo(node: cc.Node, targetPos: cc.Vec2, speed: number): Promise<number> {
+        const distance: number = this.getDistance(node.getPosition(), targetPos)
+
+        return new Promise<number>((resolve, reject) => {
+            if (!distance) resolve
+            const duration: number = distance / speed
+            const moveAction: cc.ActionInterval = cc.moveTo(duration, targetPos)
+            const sequence: cc.ActionInterval = cc.sequence(moveAction, cc.callFunc(resolve))
+            node.runAction(sequence)
+        })
     }
 
     static blink(component: cc.Component, color: cc.Color) {

@@ -39,23 +39,10 @@ export default class NewClass extends cc.Component {
             this.node.destroy()
         } else {
             Helpers.rotateTo(this.node, nextPos, 300, 0)
-            this.moveTo(nextPos).then(() => {
+            Helpers.moveTo(this.node, nextPos, this.speed).then(() => {
                 this.moveToNextTarget()
             })
         }
-    }
-
-    moveTo(targetPos: cc.Vec2): Promise<number> {
-        const xDistance: number = targetPos.x - this.node.x
-        const yDistance: number = targetPos.y - this.node.y
-        const distance: number = Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2))
-
-        const time: number = distance / this.speed
-        return new Promise<number>((resolve, reject) => {
-            const moveAction: cc.ActionInterval = cc.moveTo(time, targetPos)
-            const sequence: cc.ActionInterval = cc.sequence(moveAction, cc.callFunc(resolve))
-            this.node.runAction(sequence)
-        })
     }
 
     getCurrentTarget(): Target {
