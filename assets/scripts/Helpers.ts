@@ -14,8 +14,12 @@ export default class Helpers {
     }
 
     /* MATH STUFFS */
+    static toDegree(radian: number): number {
+        return radian * 180 / Math.PI
+    }
+
     static getAngle(currentPos: cc.Vec2, targetPos: cc.Vec2): number {
-        return Math.atan2(targetPos.y - currentPos.y, targetPos.x - currentPos.x) * 180 / Math.PI
+        return -this.toDegree(Math.atan2(targetPos.y - currentPos.y, targetPos.x - currentPos.x))
     }
 
     static randomBetween(min: number, max: number): number {
@@ -36,13 +40,15 @@ export default class Helpers {
     }
 
     /* NODE OPERATIONS */
-    static rotateTo(node: cc.Node, speed: number, targetPos: cc.Vec2) { // tween
-        const finalAngle: number = Helpers.getAngle(node.getPosition(), targetPos)
-        const angleDiff: number = Math.abs(finalAngle - node.angle)
+    /* @param offset: angle (degrees) different from front face to x+ axis */
+    static rotateTo(node: cc.Node, targetPos: cc.Vec2, speed: number, offset: number) { // tween
+        const dstAngle: number = Helpers.getAngle(node.getPosition(), targetPos) + offset
+        const angleDiff: number = Math.abs(dstAngle - node.angle)
         if (!angleDiff) return
         const duration: number = angleDiff / speed
 
-        node.runAction(cc.rotateTo(duration, finalAngle))
+        node.runAction(cc.rotateTo(duration, dstAngle))
+
     }
 
     static blink(component: cc.Component, color: cc.Color) {

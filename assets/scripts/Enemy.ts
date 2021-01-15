@@ -38,7 +38,7 @@ export default class NewClass extends cc.Component {
             this.node.emit(Events.ENEMY_FINISH)
             this.node.destroy()
         } else {
-            Helpers.rotateTo(this.node, 900, nextPos)
+            Helpers.rotateTo(this.node, nextPos, 300, 0)
             this.moveTo(nextPos).then(() => {
                 this.moveToNextTarget()
             })
@@ -75,5 +75,6 @@ export default class NewClass extends cc.Component {
     }
 
     update(dt) {
+        // cc.log(this.node.angle)
     }
 }

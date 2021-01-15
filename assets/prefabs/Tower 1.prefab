@@ -119,6 +119,7 @@
       "__id__": 1
     },
     "_enabled": true,
+    "reloadTime": 0.1,
     "_id": ""
   },
   {
