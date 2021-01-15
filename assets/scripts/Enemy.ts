@@ -5,8 +5,8 @@ import LevelMap from "./LevelMap";
 
 const { ccclass, property } = cc._decorator;
 
-// assigned in Tiled editor
-type Target = {
+// assigned in Tiled editor, path object layer
+type MovePoint = {
     name: string,
     x: number,
     y: number,
@@ -14,7 +14,7 @@ type Target = {
 
 @ccclass
 export default class NewClass extends cc.Component {
-    @property(LevelMap)
+    // @property(LevelMap)
     levelMap: LevelMap = null
     @property
     speed: number = 150
@@ -23,23 +23,28 @@ export default class NewClass extends cc.Component {
     // @property
     damage: number = 2
 
-    targets: Target[] = [] // checkpoints
-    currentTargetName: number = 0
+    targets: MovePoint[] = [] // checkpoints
+    currentMovePointName: number = 0
     rotationSpeed: number = 9
 
     // onLoad () {}
 
-    start() {
+    init(map: LevelMap) {
+        this.levelMap = map
         this.targets = this.levelMap.pathGroup.getObjects()
 
-        this.moveToNextTarget()
+        this.moveToNextPoint()
     }
 
-    moveToNextTarget() {
-        this.currentTargetName++
-        const nextPos: cc.Vec2 = this.getCurrentTargetPos()
+    start() {
+       
+    }
 
-        if (!nextPos) {
+    moveToNextPoint() {
+        this.currentMovePointName++
+        const nextPos: cc.Vec2 = this.getCurrentPointPos()
+
+        if (!nextPos) { // finish movement
             const event: cc.Event.EventCustom = new cc.Event.EventCustom(Events.ENEMY_ATTACK, true)
             const data: EnemyAttackData = { damage: this.damage }
             event.setUserData(data)
@@ -50,18 +55,18 @@ export default class NewClass extends cc.Component {
         } else {
             Helpers.rotateTo(this.node, nextPos, 300, 0)
             Helpers.moveTo(this.node, nextPos, this.speed).then(() => {
-                this.moveToNextTarget()
+                this.moveToNextPoint()
             })
         }
     }
 
-    getCurrentTarget(): Target {
-        return this.targets.find((target: Target) => parseInt(target.name) === this.currentTargetName)
+    getCurrentPoint(): MovePoint {
+        return this.targets.find((target: MovePoint) => parseInt(target.name) === this.currentMovePointName)
     }
 
     // exact position (pixels) of the center point in tile
-    getCurrentTargetPos(): cc.Vec2 {
-        const currentTarget: Target = this.getCurrentTarget()
+    getCurrentPointPos(): cc.Vec2 {
+        const currentTarget: MovePoint = this.getCurrentPoint()
         if (!currentTarget) return
 
         const tileCoord: cc.Vec2 = this.levelMap.getTileCoordByPos(currentTarget.x, currentTarget.y)
@@ -89,6 +94,5 @@ export default class NewClass extends cc.Component {
     }
 
     update(dt) {
-        // cc.log(this.node.angle)
     }
 }

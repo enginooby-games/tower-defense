@@ -1,3 +1,4 @@
+import EnemySpawner from "./EnemySpawner";
 import { Events, BuildTowerData, EnemyAttackData } from "./Events";
 import Helpers from "./Helpers";
 import LevelMap from "./LevelMap";
@@ -15,6 +16,8 @@ export default class Game extends cc.Component {
     panelCreate: PanelCreate = null
     @property(TowerSpawner)
     towerSpawner: TowerSpawner = null
+    @property(EnemySpawner)
+    enemySpawner: EnemySpawner = null
     // @property
     health: number = 69
     @property(cc.Label)
@@ -31,6 +34,7 @@ export default class Game extends cc.Component {
         this.levelMap.init()
         this.panelCreate.init(this.levelMap)
         this.towerSpawner.init(this.levelMap)
+        this.enemySpawner.init(this.levelMap)
         this.updateHeathLabel()
     }
 
