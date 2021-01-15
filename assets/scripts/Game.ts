@@ -1,4 +1,5 @@
 import { Events, PanelTouchData } from "./Events";
+import Helpers from "./Helpers";
 import LevelMap from "./LevelMap";
 import PanelCreate from "./PanelCreate";
 import Tower from "./Tower";
@@ -18,6 +19,7 @@ export default class Game extends cc.Component {
     onLoad() {
         this.init()
         this.setEvents()
+        Helpers.enableCollision(true)
     }
 
     // init all components here instead of onLoad to ensure the availabilities

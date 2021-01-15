@@ -1,4 +1,18 @@
 export default class Helpers {
+    /* GLOBAL */
+    static enablePhysics(debugDraw: boolean) {
+        const physicsManager: cc.PhysicsManager = cc.director.getPhysicsManager();
+        physicsManager.enabled = true;
+        physicsManager.debugDrawFlags = debugDraw ? 1 : 0;
+    }
+
+    static enableCollision(debugDraw: boolean) {
+        const collisionManager: cc.CollisionManager = cc.director.getCollisionManager();
+        collisionManager.enabled = true;
+        collisionManager.enabledDebugDraw = debugDraw;
+        collisionManager.enabledDrawBoundingBox = debugDraw;
+    }
+
     /* MATH STUFFS */
     static getAngle(currentPos: cc.Vec2, targetPos: cc.Vec2): number {
         return Math.atan2(targetPos.y - currentPos.y, targetPos.x - currentPos.x) * 180 / Math.PI
