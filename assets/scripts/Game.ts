@@ -17,6 +17,8 @@ export default class Game extends cc.Component {
     towerSpawner: TowerSpawner = null
     // @property
     health: number = 69
+    @property(cc.Label)
+    healthLabel: cc.Label = null
 
     onLoad() {
         this.init()
@@ -29,6 +31,7 @@ export default class Game extends cc.Component {
         this.levelMap.init()
         this.panelCreate.init(this.levelMap)
         this.towerSpawner.init(this.levelMap)
+        this.updateHeathLabel()
     }
 
     setEvents() {
@@ -40,7 +43,8 @@ export default class Game extends cc.Component {
     getAttacked(event: cc.Event.EventCustom) {
         const data: EnemyAttackData = event.getUserData()
         this.health -= data.damage
-        
+        this.updateHeathLabel()
+
         // stop event delivery
         event.stopPropagation();
     }
@@ -62,6 +66,10 @@ export default class Game extends cc.Component {
             if (!tower)
                 this.panelCreate.show(touchCoord)
         }
+    }
+
+    updateHeathLabel() {
+        this.healthLabel.string = this.health.toString()
     }
 
     start() {
