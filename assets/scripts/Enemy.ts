@@ -1,3 +1,4 @@
+import Bullet from "./Bullet";
 import { Events } from "./Events";
 import Helpers from "./Helpers";
 import LevelMap from "./LevelMap";
@@ -17,6 +18,8 @@ export default class NewClass extends cc.Component {
     levelMap: LevelMap = null
     @property
     speed: number = 150
+    // @property
+    health: number = 5
 
     targets: Target[] = []
     currentTargetName: number = 0
@@ -59,6 +62,23 @@ export default class NewClass extends cc.Component {
 
         // return center point
         return cc.v2(pos.x + this.levelMap.tileSize.width / 2, pos.y + this.levelMap.tileSize.height / 2)
+    }
+
+    onCollisionEnter(other: cc.Collider, self: cc.Collider) {
+        const bullet: Bullet = other.node.getComponent(Bullet)
+        if (bullet) {
+            this.getShot(bullet.damage)
+            bullet.node.destroy()
+        }
+    }
+
+    getShot(damage: number) {
+        this.health -= damage
+        if (this.health > 0) {
+            Helpers.blink(this, cc.Color.RED)
+        } else {
+            this.node.destroy()
+        }
     }
 
     update(dt) {

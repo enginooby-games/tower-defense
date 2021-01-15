@@ -19,7 +19,7 @@ export default class Game extends cc.Component {
     onLoad() {
         this.init()
         this.setEvents()
-        Helpers.enableCollision(true)
+        Helpers.enableCollision(false)
     }
 
     // init all components here instead of onLoad to ensure the availabilities

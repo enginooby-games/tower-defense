@@ -4,6 +4,7 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class Bullet extends cc.Component {
+    damage: number = 2
     speed: number = 1000
     targetPos: cc.Vec2
 
