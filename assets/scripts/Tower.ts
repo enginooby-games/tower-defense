@@ -1,10 +1,16 @@
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class Tower extends cc.Component {
+    coord: cc.Vec2
+
     // onLoad () {}
 
-    start () {
+    init(coord: cc.Vec2) {
+        this.coord = coord
+    }
+
+    start() {
 
     }
 

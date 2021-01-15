@@ -27,7 +27,11 @@ export default class LevelMap extends cc.Component {
 
     // update (dt) {}
 
-    getTileCoordByPos(x, y): cc.Vec2 {
-        return new cc.Vec2(Math.floor(x / this.tileSize.width), this.mapSize.height - Math.floor(y / this.tileSize.height) - 1)
+    getTileCoordByPos(x: number | cc.Vec2, y?: number): cc.Vec2 {
+        if (typeof x === 'number' && typeof y === 'number') {
+            return new cc.Vec2(Math.floor(x / this.tileSize.width), this.mapSize.height - Math.floor(y / this.tileSize.height) - 1)
+        } else if(x instanceof cc.Vec2) {
+            return new cc.Vec2(Math.floor(x.x / this.tileSize.width), this.mapSize.height - Math.floor(x.y / this.tileSize.height) - 1)
+        }
     }
 }

@@ -1,6 +1,7 @@
 import { Events, PanelTouchData } from "./Events";
 import LevelMap from "./LevelMap";
 import PanelCreate from "./PanelCreate";
+import Tower from "./Tower";
 import TowerSpawner from "./TowerSpawner";
 
 const { ccclass, property } = cc._decorator;
@@ -34,7 +35,6 @@ export default class Game extends cc.Component {
     createTower(data: PanelTouchData) {
         this.towerSpawner.createTower(data)
         this.panelCreate.hide()
-        cc.log(data)
     }
 
     onMapTouch(event: cc.Event.EventTouch) {
@@ -45,7 +45,9 @@ export default class Game extends cc.Component {
 
         const tileId: number = this.levelMap.towersLayer.getTileGIDAt(touchCoord)
         if (tileId) {
-            this.panelCreate.show(touchCoord)
+            const tower: Tower = this.towerSpawner.findTowerByCoord(touchCoord)
+            if (!tower)
+                this.panelCreate.show(touchCoord)
         }
     }
 
