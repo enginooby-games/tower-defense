@@ -1,9 +1,13 @@
 export enum Events {
-    ENEMY_FINISH = 'ENEMY_FINISH',
-    PANEL_TOUCH = 'PANEL_TOUCH'
+    ENEMY_ATTACK = 'ENEMY_ATTACK',
+    BUILD_TOWER = 'BUILD_TOWER'
 }
 
-export type PanelTouchData = {
+export type BuildTowerData = {
     towerName: string,
     coord: cc.Vec2
+}
+
+export type EnemyAttackData = {
+    damage: number
 }

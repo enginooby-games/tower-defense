@@ -1,4 +1,4 @@
-import { PanelTouchData } from "./Events";
+import { BuildTowerData } from "./Events";
 import LevelMap from "./LevelMap";
 import Tower from "./Tower";
 
@@ -22,7 +22,7 @@ export default class TowerSpawner extends cc.Component {
 
     }
 
-    createTower(data: PanelTouchData) {
+    createTower(data: BuildTowerData) {
         const prefab: cc.Prefab = this.towerPrefabs.find((towerPrefab: cc.Prefab) => towerPrefab.name === data.towerName)
         const pos: cc.Vec2 = this.levelMap.towersLayer.getPositionAt(data.coord)
 

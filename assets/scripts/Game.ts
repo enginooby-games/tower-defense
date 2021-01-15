@@ -1,4 +1,4 @@
-import { Events, PanelTouchData } from "./Events";
+import { Events, BuildTowerData, EnemyAttackData } from "./Events";
 import Helpers from "./Helpers";
 import LevelMap from "./LevelMap";
 import PanelCreate from "./PanelCreate";
@@ -15,6 +15,8 @@ export default class Game extends cc.Component {
     panelCreate: PanelCreate = null
     @property(TowerSpawner)
     towerSpawner: TowerSpawner = null
+    // @property
+    health: number = 69
 
     onLoad() {
         this.init()
@@ -31,10 +33,19 @@ export default class Game extends cc.Component {
 
     setEvents() {
         this.levelMap.node.on(cc.Node.EventType.TOUCH_END, this.onMapTouch, this)
-        this.panelCreate.node.on(Events.PANEL_TOUCH, this.createTower, this)
+        this.panelCreate.node.on(Events.BUILD_TOWER, this.createTower, this)
+        this.node.on(Events.ENEMY_ATTACK, this.getAttacked, this)
     }
 
-    createTower(data: PanelTouchData) {
+    getAttacked(event: cc.Event.EventCustom) {
+        const data: EnemyAttackData = event.getUserData()
+        this.health -= data.damage
+        
+        // stop event delivery
+        event.stopPropagation();
+    }
+
+    createTower(data: BuildTowerData) {
         this.towerSpawner.createTower(data)
         this.panelCreate.hide()
     }

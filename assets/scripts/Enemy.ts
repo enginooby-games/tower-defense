@@ -1,5 +1,5 @@
 import Bullet from "./Bullet";
-import { Events } from "./Events";
+import { EnemyAttackData, Events } from "./Events";
 import Helpers from "./Helpers";
 import LevelMap from "./LevelMap";
 
@@ -20,8 +20,10 @@ export default class NewClass extends cc.Component {
     speed: number = 150
     // @property
     health: number = 5
+    // @property
+    damage: number = 2
 
-    targets: Target[] = []
+    targets: Target[] = [] // checkpoints
     currentTargetName: number = 0
     rotationSpeed: number = 9
 
@@ -38,7 +40,12 @@ export default class NewClass extends cc.Component {
         const nextPos: cc.Vec2 = this.getCurrentTargetPos()
 
         if (!nextPos) {
-            this.node.emit(Events.ENEMY_FINISH)
+            const event: cc.Event.EventCustom = new cc.Event.EventCustom(Events.ENEMY_ATTACK, true)
+            const data: EnemyAttackData = { damage: this.damage }
+            event.setUserData(data)
+
+            // use dispatchEvent() to delivery event to parents (Game)
+            this.node.dispatchEvent(event);
             this.node.destroy()
         } else {
             Helpers.rotateTo(this.node, nextPos, 300, 0)
