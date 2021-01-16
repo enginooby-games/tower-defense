@@ -29,8 +29,11 @@ export default class Game extends cc.Component {
     cointLabel: cc.Label = null
     @property(cc.Node)
     speedButton: cc.Node = null
+    @property(cc.Node)
+    pauseButton: cc.Node = null
 
     speedScale: number = 1
+    isPaused: boolean = false
 
     constructor() {
         super()
@@ -60,6 +63,7 @@ export default class Game extends cc.Component {
     setEvents() {
         this.levelMap.node.on(cc.Node.EventType.TOUCH_END, this.onMapTouch, this)
         this.speedButton.on(cc.Node.EventType.TOUCH_END, this.toggleSpeedUp, this)
+        this.pauseButton.on(cc.Node.EventType.TOUCH_END, this.togglePauseState, this)
         // this.panelCreate.node.on(Events.BUILD_TOWER, this.onBuildTower, this)
         // this.node.on(Events.ENEMY_ATTACK, this.onGetAttacked, this)
     }
@@ -74,15 +78,29 @@ export default class Game extends cc.Component {
     // }
 
     toggleSpeedUp() {
+        if (this.isPaused) return
+
         if (this.speedScale === 1) {
-            this.speedButton.color = cc.Color.WHITE
+            this.speedButton.color = cc.Color.BLACK
             this.speedScale = 2
         } else if (this.speedScale === 2) {
-            this.speedButton.color = cc.Color.BLACK
+            this.speedButton.color = cc.Color.WHITE
             this.speedScale = 1
         }
 
         Helpers.setTimeScale(this.speedScale)
+    }
+
+    togglePauseState() {
+        if (!this.isPaused) {
+            this.isPaused = true
+            this.scheduleOnce(() => {
+                Helpers.setTimeScale(0)
+            }, 0.2) // delay to wait for button effect completes
+        } else {
+            this.isPaused = false
+            Helpers.setTimeScale(this.speedScale)
+        }
     }
 
     getAttack(damage: number) {
