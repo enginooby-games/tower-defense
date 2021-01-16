@@ -119,6 +119,9 @@
       "__id__": 1
     },
     "_enabled": true,
+    "bulletPrefab": {
+      "__uuid__": "9adf4867-9d73-49b6-b242-0df9e0eb74cb"
+    },
     "_id": ""
   },
   {
@@ -135,7 +138,7 @@
       "x": 0,
       "y": 0
     },
-    "_radius": 100,
+    "_radius": 200,
     "_id": ""
   },
   {
