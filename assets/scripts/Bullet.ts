@@ -13,6 +13,7 @@ export default class Bullet extends cc.Component {
         this.targetPos = targetPos
 
         Helpers.moveTo(this.node, targetPos, this.speed).then(() => {
+            if (!this.node) return
             this.node.destroy()
         })
     }

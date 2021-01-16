@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Tower 2",
+    "_name": "Enemy 1",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -42,8 +42,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 44,
-      "height": 57
+      "width": 24,
+      "height": 28
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -54,23 +54,23 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
+        281.857,
+        -42.32,
         0,
         0,
         0,
-        0,
-        0,
-        0,
-        1,
-        1,
-        1,
-        1
+        0.7071067811865475,
+        0.7071067811865476,
+        2,
+        2,
+        2
       ]
     },
     "_eulerAngles": {
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 0
+      "z": 90
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -95,7 +95,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "ec553ffd-5052-4234-98c6-a0efafb76473"
+      "__uuid__": "bdc2e208-51f4-4d1f-96ec-cbf3baf21f02"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -112,20 +112,24 @@
     "_id": ""
   },
   {
-    "__type__": "dcf73m94SFHwKCLCSWKgyqu",
+    "__type__": "bd3caUdpBJPK7vIYYVJdxaI",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "bulletPrefab": {
-      "__uuid__": "9adf4867-9d73-49b6-b242-0df9e0eb74cb"
+    "healthBarPrefab": {
+      "__uuid__": "2bdae347-afa8-4771-abfd-e6c95f5a6786"
     },
+    "moveSpeed": 150,
+    "maxHealth": 2,
+    "damage": 1,
+    "coint": 10,
     "_id": ""
   },
   {
-    "__type__": "cc.CircleCollider",
+    "__type__": "cc.BoxCollider",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -138,7 +142,11 @@
       "x": 0,
       "y": 0
     },
-    "_radius": 200,
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 24,
+      "height": 28
+    },
     "_id": ""
   },
   {
@@ -147,7 +155,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "45737930-1cda-42b6-9b7b-97c1ada1d48a"
+      "__uuid__": "0c9564ec-323c-41d0-82f3-cafe69682684"
     },
     "fileId": "",
     "sync": false

@@ -21,11 +21,11 @@ export default class Game extends cc.Component {
     towerSpawner: TowerSpawner = null
     @property(EnemySpawner)
     enemySpawner: EnemySpawner = null
-    // @property
-    health: number = 69
+    @property
+    health: number = 20
     @property(cc.Label)
     healthLabel: cc.Label = null
-    // @property
+    @property
     coint: number = 100
     @property(cc.Label)
     cointLabel: cc.Label = null

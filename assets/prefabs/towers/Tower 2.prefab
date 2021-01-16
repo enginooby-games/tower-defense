@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Enemy 2",
+    "_name": "Tower 2",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -42,8 +42,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 28,
-      "height": 32
+      "width": 44,
+      "height": 57
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -54,23 +54,23 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        281.857,
-        -42.32,
         0,
         0,
         0,
-        0.7071067811865475,
-        0.7071067811865476,
-        2,
-        2,
-        2
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
       ]
     },
     "_eulerAngles": {
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 90
+      "z": 0
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -95,10 +95,10 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "2e8d6b97-fb04-4b69-9931-b07c3af4c7ec"
+      "__uuid__": "ec553ffd-5052-4234-98c6-a0efafb76473"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -112,21 +112,7 @@
     "_id": ""
   },
   {
-    "__type__": "bd3caUdpBJPK7vIYYVJdxaI",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "healthBarPrefab": {
-      "__uuid__": "2bdae347-afa8-4771-abfd-e6c95f5a6786"
-    },
-    "maxHealth": 3,
-    "_id": ""
-  },
-  {
-    "__type__": "cc.BoxCollider",
+    "__type__": "cc.CircleCollider",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -139,10 +125,22 @@
       "x": 0,
       "y": 0
     },
-    "_size": {
-      "__type__": "cc.Size",
-      "width": 28,
-      "height": 32
+    "_radius": 200,
+    "_id": ""
+  },
+  {
+    "__type__": "dcf73m94SFHwKCLCSWKgyqu",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "bulletPrefab": {
+      "__uuid__": "9adf4867-9d73-49b6-b242-0df9e0eb74cb"
+    },
+    "shootSfx": {
+      "__uuid__": "0d9a6392-3a17-4dd8-9ed0-c55fb0499478"
     },
     "_id": ""
   },
@@ -152,7 +150,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b9e37a6c-2f49-490b-ab79-2c828afb5b10"
+      "__uuid__": "45737930-1cda-42b6-9b7b-97c1ada1d48a"
     },
     "fileId": "",
     "sync": false

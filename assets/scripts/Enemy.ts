@@ -18,13 +18,13 @@ export default class NewClass extends cc.Component {
     levelMap: LevelMap = null
     @property(cc.Prefab)
     healthBarPrefab: cc.Prefab = null
-    // @property
+    @property
     moveSpeed: number = 150
     @property
     maxHealth: number = 5
-    // @property
-    damage: number = 2
-    // @property
+    @property
+    damage: number = 1
+    @property
     coint: number = 10
 
     currentHealth: number
@@ -47,7 +47,7 @@ export default class NewClass extends cc.Component {
     createHealthBar() {
         const healthBarNode: cc.Node = cc.instantiate(this.healthBarPrefab)
         this.node.addChild(healthBarNode)
-        // healthBarNode.setPosition(14, 0)
+        healthBarNode.setPosition(this.node.width / 2, 0)
         healthBarNode.setContentSize(this.node.width, this.node.width / 5)
 
         this.healthProgressBar = healthBarNode.getComponent(cc.ProgressBar)
@@ -56,6 +56,7 @@ export default class NewClass extends cc.Component {
 
         const barNode: cc.Node = healthBarNode.children[0]
         barNode.setContentSize(this.node.width, this.node.width / 5)
+        barNode.setPosition(-this.node.width / 2, 0)
     }
 
     updateHealthBar(damage: number) {
@@ -67,6 +68,7 @@ export default class NewClass extends cc.Component {
     }
 
     moveToNextPoint() {
+        if (!this.node) return
         this.currentMovePointName++
         const nextPos: cc.Vec2 = this.getCurrentPointPos()
 

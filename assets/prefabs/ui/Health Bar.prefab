@@ -83,7 +83,7 @@
   {
     "__type__": "cc.Node",
     "_name": "Bar",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "_parent": {
       "__id__": 1
     },
@@ -182,7 +182,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "2bdae347-afa8-4771-abfd-e6c95f5a6786"
     },
     "fileId": "7fA7ZJJglHnpyyMLeeGhd3",
     "sync": false
@@ -242,7 +242,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "2bdae347-afa8-4771-abfd-e6c95f5a6786"
     },
     "fileId": "",
     "sync": false

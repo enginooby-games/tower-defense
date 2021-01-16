@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Enemy 1",
+    "_name": "Enemy 3",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -42,8 +42,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 24,
-      "height": 28
+      "width": 38,
+      "height": 42
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -95,10 +95,10 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "bdc2e208-51f4-4d1f-96ec-cbf3baf21f02"
+      "__uuid__": "168154c0-b3f0-4527-9f82-31757ddec749"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -122,7 +122,10 @@
     "healthBarPrefab": {
       "__uuid__": "2bdae347-afa8-4771-abfd-e6c95f5a6786"
     },
-    "maxHealth": 1,
+    "moveSpeed": 70,
+    "maxHealth": 50,
+    "damage": 10,
+    "coint": 100,
     "_id": ""
   },
   {
@@ -141,8 +144,8 @@
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 24,
-      "height": 28
+      "width": 38,
+      "height": 42
     },
     "_id": ""
   },
@@ -152,7 +155,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "0c9564ec-323c-41d0-82f3-cafe69682684"
+      "__uuid__": "44f884d8-33b2-4b90-8a57-7da6dbeb979f"
     },
     "fileId": "",
     "sync": false
