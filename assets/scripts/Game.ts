@@ -27,6 +27,10 @@ export default class Game extends cc.Component {
     coint: number = 100
     @property(cc.Label)
     cointLabel: cc.Label = null
+    @property(cc.Node)
+    speedButton: cc.Node = null
+
+    speedScale: number = 1
 
     constructor() {
         super()
@@ -41,7 +45,6 @@ export default class Game extends cc.Component {
         this.init()
         this.setEvents()
         Helpers.enableCollision(false)
-        Helpers.setTimeScale(2)
     }
 
     // init all components here instead of onLoad to ensure the availabilities
@@ -56,6 +59,7 @@ export default class Game extends cc.Component {
 
     setEvents() {
         this.levelMap.node.on(cc.Node.EventType.TOUCH_END, this.onMapTouch, this)
+        this.speedButton.on(cc.Node.EventType.TOUCH_END, this.toggleSpeedUp, this)
         // this.panelCreate.node.on(Events.BUILD_TOWER, this.onBuildTower, this)
         // this.node.on(Events.ENEMY_ATTACK, this.onGetAttacked, this)
     }
@@ -68,6 +72,18 @@ export default class Game extends cc.Component {
     //     // stop event delivery
     //     event.stopPropagation();
     // }
+
+    toggleSpeedUp() {
+        if (this.speedScale === 1) {
+            this.speedButton.color = cc.Color.WHITE
+            this.speedScale = 2
+        } else if (this.speedScale === 2) {
+            this.speedButton.color = cc.Color.BLACK
+            this.speedScale = 1
+        }
+
+        Helpers.setTimeScale(this.speedScale)
+    }
 
     getAttack(damage: number) {
         this.health -= damage

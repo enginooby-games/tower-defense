@@ -54,7 +54,7 @@ export default class EnemySpawner extends cc.Component {
     countdown(duration: number) {
         let timeLeft: number = duration
         this.schedule(() => {
-            this.countdownLabel.string = `Next wave: ${--timeLeft}s`
+            this.countdownLabel.string = `Next wave: ${--timeLeft} (s)`
         }, 1, duration - 1)
     }
 }
