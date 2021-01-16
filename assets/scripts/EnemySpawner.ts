@@ -1,7 +1,17 @@
-import EnemyWave from "./EnemyWave";
+import Enemy from "./Enemy";
 import LevelMap from "./LevelMap";
 
 const { ccclass, property } = cc._decorator;
+
+@ccclass("WaveData")
+class WaveData {
+    @property(cc.Float)
+    spawnInterval: number = 0.5;
+    @property(cc.Integer)
+    amount: number = 10;
+    @property(cc.Prefab)
+    enemyPrefab: cc.Prefab = null
+}
 
 @ccclass
 export default class EnemySpawner extends cc.Component {
@@ -9,14 +19,12 @@ export default class EnemySpawner extends cc.Component {
     countdownLabel: cc.Label = null
     @property(cc.Label)
     waveCountLabel: cc.Label = null
-    @property({ type: cc.Prefab })
-    enemyWavePrefabs: cc.Prefab[] = []
-    // @property
-    waveInterval: number = 15
-    // @property
-    waveAmount: number = 10
-    // @property
+    @property
+    waveInterval: number = 30
+    @property
     firstDelay: number = 15
+    @property({ type: WaveData })
+    waveDatas: WaveData[] = []
 
     currentWave: number = 0
     levelMap: LevelMap = null
@@ -31,24 +39,37 @@ export default class EnemySpawner extends cc.Component {
     }
 
     createEnemyWaves() {
-        this.createEnemyWave() // kick off first wave immediately
-        this.schedule(this.createEnemyWave, this.waveInterval, this.waveAmount - 2) // 2 is account for first kickoff & parameter method
+        if (this.waveDatas.length) {
+            this.createCurrentEnemyWave() // kick off first wave immediately
+        }
+
+        if (this.waveDatas.length > 1) {
+            this.schedule(this.createCurrentEnemyWave, this.waveInterval, this.waveDatas.length - 2) // 2 is account for first kickoff & parameter method
+        }
     }
 
-    createEnemyWave() {
-        const enemyWaveNode: cc.Node = cc.instantiate(this.enemyWavePrefabs[0]) //TODO: first prefab for now
-        this.node.addChild(enemyWaveNode)
+    createCurrentEnemyWave() {
+        const data: WaveData = this.waveDatas[this.currentWave]
 
-        const enemyWave: EnemyWave = enemyWaveNode.getComponent(EnemyWave)
-        enemyWave.init(this.levelMap)
+        this.schedule(() => {
+            this.createEnemy(data.enemyPrefab)
+        }, data.spawnInterval, data.amount)
 
         this.currentWave++
         this.updateLabel()
         this.countdown(this.waveInterval)
     }
 
+    createEnemy(enemyPrefab: cc.Prefab) {
+        const enemyNode: cc.Node = cc.instantiate(enemyPrefab)
+        this.node.addChild(enemyNode)
+
+        const enemy = enemyNode.getComponent(Enemy)
+        enemy.init(this.levelMap)
+    }
+
     updateLabel() {
-        this.waveCountLabel.string = `Current wave: ${this.currentWave}/${this.waveAmount}`
+        this.waveCountLabel.string = `Current wave: ${this.currentWave}/${this.waveDatas.length}`
     }
 
     countdown(duration: number) {

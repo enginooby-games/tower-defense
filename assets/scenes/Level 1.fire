@@ -75,13 +75,13 @@
         "__id__": 16
       },
       {
-        "__id__": 52
-      },
-      {
         "__id__": 54
       },
       {
-        "__id__": 78
+        "__id__": 56
+      },
+      {
+        "__id__": 80
       },
       {
         "__id__": 21
@@ -90,13 +90,13 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 83
-      },
-      {
-        "__id__": 84
-      },
-      {
         "__id__": 85
+      },
+      {
+        "__id__": 86
+      },
+      {
+        "__id__": 87
       }
     ],
     "_prefab": null,
@@ -719,9 +719,14 @@
     "waveCountLabel": {
       "__id__": 24
     },
-    "enemyWavePrefabs": [
+    "waveInterval": 30,
+    "firstDelay": 15,
+    "waveDatas": [
       {
-        "__uuid__": "ed7cbbbd-268f-4a8a-b747-3f99d513196a"
+        "__id__": 52
+      },
+      {
+        "__id__": 53
       }
     ],
     "_id": "19iPnWRBhAX5FxgvXtBhaN"
@@ -2385,6 +2390,22 @@
     "_id": "4f67vPjh9HJo0lqI9p/SZj"
   },
   {
+    "__type__": "WaveData",
+    "spawnInterval": 0.5,
+    "amount": 15,
+    "enemyPrefab": {
+      "__uuid__": "0c9564ec-323c-41d0-82f3-cafe69682684"
+    }
+  },
+  {
+    "__type__": "WaveData",
+    "spawnInterval": 1,
+    "amount": 10,
+    "enemyPrefab": {
+      "__uuid__": "b9e37a6c-2f49-490b-ab79-2c828afb5b10"
+    }
+  },
+  {
     "__type__": "cc.Node",
     "_name": "Tower Spawner",
     "_objFlags": 0,
@@ -2395,7 +2416,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 53
+        "__id__": 55
       }
     ],
     "_prefab": null,
@@ -2451,7 +2472,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 52
+      "__id__": 54
     },
     "_enabled": true,
     "towerPrefabs": [
@@ -2473,7 +2494,7 @@
     },
     "_children": [
       {
-        "__id__": 55
+        "__id__": 57
       }
     ],
     "_active": true,
@@ -2531,23 +2552,23 @@
     "_name": "Panel Build",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 54
+      "__id__": 56
     },
     "_children": [
       {
-        "__id__": 56
+        "__id__": 58
       },
       {
-        "__id__": 66
+        "__id__": 68
       }
     ],
     "_active": false,
     "_components": [
       {
-        "__id__": 76
+        "__id__": 78
       },
       {
-        "__id__": 77
+        "__id__": 79
       }
     ],
     "_prefab": null,
@@ -2603,27 +2624,27 @@
     "_name": "Panel",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 55
+      "__id__": 57
     },
     "_children": [
       {
-        "__id__": 57
+        "__id__": 59
       },
       {
-        "__id__": 60
+        "__id__": 62
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 63
+        "__id__": 65
       },
       {
-        "__id__": 64
+        "__id__": 66
       }
     ],
     "_prefab": {
-      "__id__": 65
+      "__id__": 67
     },
     "_opacity": 255,
     "_color": {
@@ -2677,17 +2698,17 @@
     "_name": "Icon",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 56
+      "__id__": 58
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 58
+        "__id__": 60
       }
     ],
     "_prefab": {
-      "__id__": 59
+      "__id__": 61
     },
     "_opacity": 255,
     "_color": {
@@ -2741,7 +2762,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 57
+      "__id__": 59
     },
     "_enabled": true,
     "_materials": [
@@ -2771,7 +2792,7 @@
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 56
+      "__id__": 58
     },
     "asset": {
       "__uuid__": "b1428fc1-e5f5-4725-a78f-c3ca44a44ac9"
@@ -2784,17 +2805,17 @@
     "_name": "Label",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 56
+      "__id__": 58
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 61
+        "__id__": 63
       }
     ],
     "_prefab": {
-      "__id__": 62
+      "__id__": 64
     },
     "_opacity": 255,
     "_color": {
@@ -2848,7 +2869,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 60
+      "__id__": 62
     },
     "_enabled": true,
     "_materials": [
@@ -2879,7 +2900,7 @@
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 56
+      "__id__": 58
     },
     "asset": {
       "__uuid__": "b1428fc1-e5f5-4725-a78f-c3ca44a44ac9"
@@ -2892,7 +2913,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 56
+      "__id__": 58
     },
     "_enabled": true,
     "_materials": [
@@ -2924,22 +2945,22 @@
     "_name": null,
     "_objFlags": 0,
     "node": {
-      "__id__": 56
+      "__id__": 58
     },
     "_enabled": true,
     "cost": 50,
     "icon": {
-      "__id__": 58
+      "__id__": 60
     },
     "label": {
-      "__id__": 61
+      "__id__": 63
     },
     "_id": "94wPrC8nBEFoqAWPOBgmai"
   },
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 56
+      "__id__": 58
     },
     "asset": {
       "__uuid__": "b1428fc1-e5f5-4725-a78f-c3ca44a44ac9"
@@ -2952,27 +2973,27 @@
     "_name": "Panel",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 55
+      "__id__": 57
     },
     "_children": [
       {
-        "__id__": 67
+        "__id__": 69
       },
       {
-        "__id__": 70
+        "__id__": 72
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 73
+        "__id__": 75
       },
       {
-        "__id__": 74
+        "__id__": 76
       }
     ],
     "_prefab": {
-      "__id__": 75
+      "__id__": 77
     },
     "_opacity": 255,
     "_color": {
@@ -3026,17 +3047,17 @@
     "_name": "Icon",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 66
+      "__id__": 68
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 68
+        "__id__": 70
       }
     ],
     "_prefab": {
-      "__id__": 69
+      "__id__": 71
     },
     "_opacity": 255,
     "_color": {
@@ -3090,7 +3111,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 67
+      "__id__": 69
     },
     "_enabled": true,
     "_materials": [
@@ -3120,7 +3141,7 @@
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 66
+      "__id__": 68
     },
     "asset": {
       "__uuid__": "b1428fc1-e5f5-4725-a78f-c3ca44a44ac9"
@@ -3133,17 +3154,17 @@
     "_name": "Label",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 66
+      "__id__": 68
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 71
+        "__id__": 73
       }
     ],
     "_prefab": {
-      "__id__": 72
+      "__id__": 74
     },
     "_opacity": 255,
     "_color": {
@@ -3197,7 +3218,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 70
+      "__id__": 72
     },
     "_enabled": true,
     "_materials": [
@@ -3228,7 +3249,7 @@
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 66
+      "__id__": 68
     },
     "asset": {
       "__uuid__": "b1428fc1-e5f5-4725-a78f-c3ca44a44ac9"
@@ -3241,7 +3262,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 66
+      "__id__": 68
     },
     "_enabled": true,
     "_materials": [
@@ -3273,22 +3294,22 @@
     "_name": null,
     "_objFlags": 0,
     "node": {
-      "__id__": 66
-    },
-    "_enabled": true,
-    "cost": 100,
-    "icon": {
       "__id__": 68
     },
+    "_enabled": true,
+    "cost": 200,
+    "icon": {
+      "__id__": 70
+    },
     "label": {
-      "__id__": 71
+      "__id__": 73
     },
     "_id": "6bvbNuhwdGMKFkyKO+TIJq"
   },
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 66
+      "__id__": 68
     },
     "asset": {
       "__uuid__": "b1428fc1-e5f5-4725-a78f-c3ca44a44ac9"
@@ -3301,7 +3322,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 55
+      "__id__": 57
     },
     "_enabled": true,
     "_materials": [
@@ -3333,7 +3354,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 55
+      "__id__": 57
     },
     "_enabled": true,
     "_id": "c07FeI6uZMSYRewEsOnsH6"
@@ -3347,10 +3368,10 @@
     },
     "_children": [
       {
-        "__id__": 79
+        "__id__": 81
       },
       {
-        "__id__": 81
+        "__id__": 83
       }
     ],
     "_active": true,
@@ -3408,13 +3429,13 @@
     "_name": "Right Margin",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 78
+      "__id__": 80
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 80
+        "__id__": 82
       }
     ],
     "_prefab": null,
@@ -3470,7 +3491,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 79
+      "__id__": 81
     },
     "_enabled": true,
     "_materials": [
@@ -3502,13 +3523,13 @@
     "_name": "Left Margin",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 78
+      "__id__": 80
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-        "__id__": 82
+        "__id__": 84
       }
     ],
     "_prefab": null,
@@ -3564,7 +3585,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 81
+      "__id__": 83
     },
     "_enabled": true,
     "_materials": [
@@ -3647,10 +3668,10 @@
       "__id__": 15
     },
     "panelBuild": {
-      "__id__": 77
+      "__id__": 79
     },
     "towerSpawner": {
-      "__id__": 53
+      "__id__": 55
     },
     "enemySpawner": {
       "__id__": 17

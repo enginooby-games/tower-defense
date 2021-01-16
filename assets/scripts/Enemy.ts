@@ -20,7 +20,7 @@ export default class NewClass extends cc.Component {
     healthBarPrefab: cc.Prefab = null
     // @property
     moveSpeed: number = 150
-    // @property
+    @property
     maxHealth: number = 5
     // @property
     damage: number = 2

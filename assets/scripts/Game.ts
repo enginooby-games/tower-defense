@@ -128,6 +128,8 @@ export default class Game extends cc.Component {
     }
 
     onMapTouch(event: cc.Event.EventTouch) {
+        if (this.isPaused) return
+
         this.panelBuild.hide()
 
         const touchPos = event.getLocation()

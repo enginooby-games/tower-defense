@@ -122,7 +122,7 @@
     "healthBarPrefab": {
       "__uuid__": "2bdae347-afa8-4771-abfd-e6c95f5a6786"
     },
-    "speed": 125,
+    "maxHealth": 1,
     "_id": ""
   },
   {
