@@ -13,21 +13,26 @@ export default class EnemySpawner extends cc.Component {
     enemyWavePrefabs: cc.Prefab[] = []
     // @property
     waveInterval: number = 15
+    // @property
     waveAmount: number = 10
+    // @property
+    firstDelay: number = 15
 
     currentWave: number = 0
     levelMap: LevelMap = null
 
     init(map: LevelMap) {
         this.levelMap = map
-        this.createEnemyWaves()
         this.updateLabel()
-        // this.countdownLabel
+        this.countdown(this.firstDelay)
+        this.scheduleOnce(() => {
+            this.createEnemyWaves()
+        }, this.firstDelay)
     }
 
     createEnemyWaves() {
         this.createEnemyWave() // kick off first wave immediately
-        this.schedule(this.createEnemyWave, this.waveInterval, this.waveAmount)
+        this.schedule(this.createEnemyWave, this.waveInterval, this.waveAmount - 2) // 2 is account for first kickoff & parameter method
     }
 
     createEnemyWave() {

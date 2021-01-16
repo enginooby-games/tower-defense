@@ -41,6 +41,7 @@ export default class Game extends cc.Component {
         this.init()
         this.setEvents()
         Helpers.enableCollision(false)
+        Helpers.setTimeScale(2)
     }
 
     // init all components here instead of onLoad to ensure the availabilities

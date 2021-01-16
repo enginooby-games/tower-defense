@@ -9,7 +9,7 @@ export default class Tower extends cc.Component {
     @property(cc.Prefab)
     bulletPrefab: cc.Prefab = null
     // @property
-    reloadTime: number = 0.5
+    reloadTime: number = 0.7
 
     coord: cc.Vec2
     targets: Enemy[] = []

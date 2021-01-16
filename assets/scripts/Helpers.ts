@@ -13,6 +13,15 @@ export default class Helpers {
         collisionManager.enabledDrawBoundingBox = debugDraw;
     }
 
+    static setTimeScale(scale) {
+        (cc.director as any).calculateDeltaTime = function(now) {
+          if (!now) now = performance.now();
+          this._deltaTime = (now - this._lastUpdate) / 1000;
+          this._deltaTime *= scale;
+          this._lastUpdate = now;
+        };
+      }
+
     /* MATH STUFFS */
     static toDegree(radian: number): number {
         return radian * 180 / Math.PI

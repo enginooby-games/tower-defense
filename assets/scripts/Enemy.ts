@@ -18,8 +18,8 @@ export default class NewClass extends cc.Component {
     levelMap: LevelMap = null
     @property(cc.Prefab)
     healthBarPrefab: cc.Prefab = null
-    @property
-    speed: number = 150
+    // @property
+    moveSpeed: number = 150
     // @property
     maxHealth: number = 5
     // @property
@@ -74,7 +74,7 @@ export default class NewClass extends cc.Component {
             this.attack()
         } else {
             Helpers.rotateTo(this.node, nextPos, 300, 0)
-            Helpers.moveTo(this.node, nextPos, this.speed).then(() => {
+            Helpers.moveTo(this.node, nextPos, this.moveSpeed).then(() => {
                 this.moveToNextPoint()
             })
         }
