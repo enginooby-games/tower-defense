@@ -14,13 +14,19 @@ export default class Helpers {
     }
 
     static setTimeScale(scale) {
-        (cc.director as any).calculateDeltaTime = function(now) {
-          if (!now) now = performance.now();
-          this._deltaTime = (now - this._lastUpdate) / 1000;
-          this._deltaTime *= scale;
-          this._lastUpdate = now;
+        (cc.director as any).calculateDeltaTime = function (now) {
+            if (!now) now = performance.now();
+            this._deltaTime = (now - this._lastUpdate) / 1000;
+            this._deltaTime *= scale;
+            this._lastUpdate = now;
         };
-      }
+    }
+
+    static playBackgroundMusic(clip: cc.AudioClip) {
+        if (!cc.audioEngine.isMusicPlaying()) {
+            cc.audioEngine.playMusic(clip, true)
+        }
+    }
 
     /* MATH STUFFS */
     static toDegree(radian: number): number {

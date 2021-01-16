@@ -11,6 +11,8 @@ const { ccclass, property } = cc._decorator;
 export default class Game extends cc.Component {
     static instance: Game = null
 
+    @property(cc.AudioClip)
+    backgroundMusic: cc.AudioClip = null
     @property(LevelMap)
     levelMap: LevelMap = null
     @property(PanelBuild)
@@ -48,6 +50,7 @@ export default class Game extends cc.Component {
         this.init()
         this.setEvents()
         Helpers.enableCollision(false)
+        Helpers.playBackgroundMusic(this.backgroundMusic)
     }
 
     // init all components here instead of onLoad to ensure the availabilities
