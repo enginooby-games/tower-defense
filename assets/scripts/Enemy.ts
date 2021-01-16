@@ -16,13 +16,17 @@ type MovePoint = {
 export default class NewClass extends cc.Component {
     // @property(LevelMap)
     levelMap: LevelMap = null
+    @property(cc.Prefab)
+    healthBarPrefab: cc.Prefab = null
     @property
     speed: number = 150
     // @property
-    health: number = 5
+    maxHealth: number = 5
     // @property
     damage: number = 2
 
+    currentHealth: number
+    healthProgressBar: cc.ProgressBar
     targets: MovePoint[] = [] // checkpoints
     currentMovePointName: number = 0
     rotationSpeed: number = 9
@@ -32,12 +36,32 @@ export default class NewClass extends cc.Component {
     init(map: LevelMap) {
         this.levelMap = map
         this.targets = this.levelMap.pathGroup.getObjects()
+        this.currentHealth = this.maxHealth
 
+        this.createHealthBar()
         this.moveToNextPoint()
     }
 
+    createHealthBar() {
+        const healthBarNode: cc.Node = cc.instantiate(this.healthBarPrefab)
+        this.node.addChild(healthBarNode)
+        // healthBarNode.setPosition(14, 0)
+        healthBarNode.setContentSize(this.node.width, this.node.width / 5)
+
+        this.healthProgressBar = healthBarNode.getComponent(cc.ProgressBar)
+        this.healthProgressBar.totalLength = this.node.width
+        this.healthProgressBar.progress = 1
+
+        const barNode: cc.Node = healthBarNode.children[0]
+        barNode.setContentSize(this.node.width, this.node.width / 5)
+    }
+
+    updateHealthBar(damage: number) {
+        this.healthProgressBar.progress -= (damage / this.maxHealth)
+    }
+
     start() {
-       
+
     }
 
     moveToNextPoint() {
@@ -85,8 +109,10 @@ export default class NewClass extends cc.Component {
     }
 
     getShot(damage: number) {
-        this.health -= damage
-        if (this.health > 0) {
+        this.currentHealth -= damage
+        this.updateHealthBar(damage)
+
+        if (this.currentHealth > 0) {
             Helpers.blink(this, cc.Color.RED)
         } else {
             this.node.destroy()
