@@ -1,5 +1,5 @@
 import EnemySpawner from "./EnemySpawner";
-import { Events, BuildTowerData, EnemyAttackData } from "./Events";
+import { Events } from "./Events";
 import Helpers from "./Helpers";
 import LevelMap from "./LevelMap";
 import PanelCreate from "./PanelCreate";
@@ -10,6 +10,8 @@ const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class Game extends cc.Component {
+    static instance: Game = null
+
     @property(LevelMap)
     levelMap: LevelMap = null
     @property(PanelCreate)
@@ -22,6 +24,15 @@ export default class Game extends cc.Component {
     health: number = 69
     @property(cc.Label)
     healthLabel: cc.Label = null
+
+    constructor() {
+        super()
+        if (Game.instance) {
+            return Game.instance;
+        }
+
+        Game.instance = this;
+    }
 
     onLoad() {
         this.init()
@@ -40,21 +51,31 @@ export default class Game extends cc.Component {
 
     setEvents() {
         this.levelMap.node.on(cc.Node.EventType.TOUCH_END, this.onMapTouch, this)
-        this.panelCreate.node.on(Events.BUILD_TOWER, this.createTower, this)
-        this.node.on(Events.ENEMY_ATTACK, this.getAttacked, this)
+        // this.panelCreate.node.on(Events.BUILD_TOWER, this.onBuildTower, this)
+        // this.node.on(Events.ENEMY_ATTACK, this.onGetAttacked, this)
     }
 
-    getAttacked(event: cc.Event.EventCustom) {
-        const data: EnemyAttackData = event.getUserData()
-        this.health -= data.damage
+    // onGetAttacked(event: cc.Event.EventCustom) {
+    //     const data: EnemyAttackData = event.getUserData()
+    //     this.health -= data.damage
+    //     this.updateHeathLabel()
+
+    //     // stop event delivery
+    //     event.stopPropagation();
+    // }
+
+    getAttack(damage: number) {
+        this.health -= damage
         this.updateHeathLabel()
-
-        // stop event delivery
-        event.stopPropagation();
     }
 
-    createTower(data: BuildTowerData) {
-        this.towerSpawner.createTower(data)
+    // onBuildTower(data: BuildTowerData) {
+    //     this.towerSpawner.createTower(data)
+    //     this.panelCreate.hide()
+    // }
+
+    buildTower(towerName: string, coord: cc.Vec2) {
+        this.towerSpawner.build(towerName, coord)
         this.panelCreate.hide()
     }
 
@@ -75,6 +96,7 @@ export default class Game extends cc.Component {
     updateHeathLabel() {
         this.healthLabel.string = this.health.toString()
     }
+
 
     start() {
 

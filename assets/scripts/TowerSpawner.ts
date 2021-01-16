@@ -1,4 +1,3 @@
-import { BuildTowerData } from "./Events";
 import LevelMap from "./LevelMap";
 import Tower from "./Tower";
 
@@ -22,15 +21,15 @@ export default class TowerSpawner extends cc.Component {
 
     }
 
-    createTower(data: BuildTowerData) {
-        const prefab: cc.Prefab = this.towerPrefabs.find((towerPrefab: cc.Prefab) => towerPrefab.name === data.towerName)
-        const pos: cc.Vec2 = this.levelMap.towersLayer.getPositionAt(data.coord)
+    build(towerName: string, coord: cc.Vec2) {
+        const prefab: cc.Prefab = this.towerPrefabs.find((towerPrefab: cc.Prefab) => towerPrefab.name === towerName)
+        const pos: cc.Vec2 = this.levelMap.towersLayer.getPositionAt(coord)
 
         const towerNode: cc.Node = cc.instantiate(prefab)
         towerNode.setPosition(pos.x + this.levelMap.tileSize.width / 2, pos.y + this.levelMap.tileSize.height / 2)
 
         const tower: Tower = towerNode.getComponent(Tower)
-        tower.init(data.coord)
+        tower.init(coord)
 
         this.node.addChild(towerNode)
         this.towers.push(tower)

@@ -1,4 +1,5 @@
-import { Events, BuildTowerData } from "./Events";
+import { Events } from "./Events";
+import Game from "./Game";
 import LevelMap from "./LevelMap";
 
 const { ccclass, property } = cc._decorator;
@@ -34,9 +35,12 @@ export default class PanelCreate extends cc.Component {
     }
 
     onPanelTouch(event: cc.Event.EventTouch) {
-        const data: BuildTowerData = { towerName: event.target.name, coord: this.coord }
-        this.node.emit(Events.BUILD_TOWER, data)
+        // const data: BuildTowerData = { towerName: event.target.name, coord: this.coord }
+        // this.node.emit(Events.BUILD_TOWER, data)
+        Game.instance.buildTower(event.target.name, this.coord)
     }
+
+
 
     // update (dt) {}
 }

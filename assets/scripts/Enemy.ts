@@ -1,5 +1,6 @@
 import Bullet from "./Bullet";
-import { EnemyAttackData, Events } from "./Events";
+import {  Events } from "./Events";
+import Game from "./Game";
 import Helpers from "./Helpers";
 import LevelMap from "./LevelMap";
 
@@ -24,6 +25,8 @@ export default class NewClass extends cc.Component {
     maxHealth: number = 5
     // @property
     damage: number = 2
+    // @property
+    coint: number = 10
 
     currentHealth: number
     healthProgressBar: cc.ProgressBar
@@ -69,19 +72,24 @@ export default class NewClass extends cc.Component {
         const nextPos: cc.Vec2 = this.getCurrentPointPos()
 
         if (!nextPos) { // finish movement
-            const event: cc.Event.EventCustom = new cc.Event.EventCustom(Events.ENEMY_ATTACK, true)
-            const data: EnemyAttackData = { damage: this.damage }
-            event.setUserData(data)
-
-            // use dispatchEvent() to delivery event to parents (Game)
-            this.node.dispatchEvent(event);
-            this.node.destroy()
+            this.attack()
         } else {
             Helpers.rotateTo(this.node, nextPos, 300, 0)
             Helpers.moveTo(this.node, nextPos, this.speed).then(() => {
                 this.moveToNextPoint()
             })
         }
+    }
+
+    attack() {
+        // const event: cc.Event.EventCustom = new cc.Event.EventCustom(Events.ENEMY_ATTACK, true)
+        // const data: EnemyAttackData = { damage: this.damage }
+        // event.setUserData(data)
+        // // use dispatchEvent() to delivery event to parents (Game)
+        // this.node.dispatchEvent(event);
+
+        Game.instance.getAttack(this.damage)
+        this.node.destroy()
     }
 
     getCurrentPoint(): MovePoint {
