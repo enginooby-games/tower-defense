@@ -1,8 +1,7 @@
 import EnemySpawner from "./EnemySpawner";
-import { Events } from "./Events";
 import Helpers from "./Helpers";
 import LevelMap from "./LevelMap";
-import PanelCreate from "./PanelCreate";
+import PanelBuild from "./PanelBuild";
 import Tower from "./Tower";
 import TowerSpawner from "./TowerSpawner";
 
@@ -14,8 +13,8 @@ export default class Game extends cc.Component {
 
     @property(LevelMap)
     levelMap: LevelMap = null
-    @property(PanelCreate)
-    panelCreate: PanelCreate = null
+    @property(PanelBuild)
+    panelBuild: PanelBuild = null
     @property(TowerSpawner)
     towerSpawner: TowerSpawner = null
     @property(EnemySpawner)
@@ -47,7 +46,7 @@ export default class Game extends cc.Component {
     // init all components here instead of onLoad to ensure the availabilities
     init() {
         this.levelMap.init()
-        this.panelCreate.init(this.levelMap)
+        this.panelBuild.init(this.levelMap)
         this.towerSpawner.init(this.levelMap)
         this.enemySpawner.init(this.levelMap)
         this.updateHeathLabel()
@@ -90,11 +89,11 @@ export default class Game extends cc.Component {
 
     buildTower(towerName: string, coord: cc.Vec2) {
         this.towerSpawner.build(towerName, coord)
-        this.panelCreate.hide()
+        this.panelBuild.hide()
     }
 
     onMapTouch(event: cc.Event.EventTouch) {
-        this.panelCreate.hide()
+        this.panelBuild.hide()
 
         const touchPos = event.getLocation()
         const touchCoord: cc.Vec2 = this.levelMap.getTileCoordByPos(touchPos.x * 2, touchPos.y * 2)
@@ -103,7 +102,7 @@ export default class Game extends cc.Component {
         if (tileId) {
             const tower: Tower = this.towerSpawner.findTowerByCoord(touchCoord)
             if (!tower)
-                this.panelCreate.show(touchCoord)
+                this.panelBuild.show(touchCoord)
         }
     }
 }

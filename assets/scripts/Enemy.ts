@@ -1,5 +1,4 @@
 import Bullet from "./Bullet";
-import { Events } from "./Events";
 import Game from "./Game";
 import Helpers from "./Helpers";
 import LevelMap from "./LevelMap";
