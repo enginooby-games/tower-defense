@@ -10,6 +10,8 @@ export default class Tower extends cc.Component {
     bulletPrefab: cc.Prefab = null
     // @property
     reloadTime: number = 0.7
+    @property(cc.AudioClip)
+    shootSfx: cc.AudioClip = null
 
     coord: cc.Vec2
     targets: Enemy[] = []
@@ -46,6 +48,7 @@ export default class Tower extends cc.Component {
             const targetPos: cc.Vec2 = currentTarget.node.getPosition()
             Helpers.rotateTo(this.node, targetPos, 800, 90).then(() => {
                 this.createBullet(targetPos)
+                cc.audioEngine.play(this.shootSfx, false, 1)
             })
         }
     }
