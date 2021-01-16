@@ -24,6 +24,10 @@ export default class Game extends cc.Component {
     health: number = 69
     @property(cc.Label)
     healthLabel: cc.Label = null
+    // @property
+    coint: number = 100
+    @property(cc.Label)
+    cointLabel: cc.Label = null
 
     constructor() {
         super()
@@ -47,6 +51,7 @@ export default class Game extends cc.Component {
         this.towerSpawner.init(this.levelMap)
         this.enemySpawner.init(this.levelMap)
         this.updateHeathLabel()
+        this.updateCoint(0)
     }
 
     setEvents() {
@@ -67,6 +72,15 @@ export default class Game extends cc.Component {
     getAttack(damage: number) {
         this.health -= damage
         this.updateHeathLabel()
+    }
+
+    updateHeathLabel() {
+        this.healthLabel.string = this.health.toString()
+    }
+
+    updateCoint(change: number) {
+        this.coint += change
+        this.cointLabel.string = this.coint.toString()
     }
 
     // onBuildTower(data: BuildTowerData) {
@@ -92,15 +106,4 @@ export default class Game extends cc.Component {
                 this.panelCreate.show(touchCoord)
         }
     }
-
-    updateHeathLabel() {
-        this.healthLabel.string = this.health.toString()
-    }
-
-
-    start() {
-
-    }
-
-    // update (dt) {}
 }

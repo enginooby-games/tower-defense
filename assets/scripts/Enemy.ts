@@ -1,5 +1,5 @@
 import Bullet from "./Bullet";
-import {  Events } from "./Events";
+import { Events } from "./Events";
 import Game from "./Game";
 import Helpers from "./Helpers";
 import LevelMap from "./LevelMap";
@@ -123,8 +123,13 @@ export default class NewClass extends cc.Component {
         if (this.currentHealth > 0) {
             Helpers.blink(this, cc.Color.RED)
         } else {
-            this.node.destroy()
+            this.die()
         }
+    }
+
+    die() {
+        Game.instance.updateCoint(this.coint)
+        this.node.destroy()
     }
 
     update(dt) {
