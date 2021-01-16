@@ -3,14 +3,22 @@ import LevelMap from "./LevelMap";
 
 const { ccclass, property } = cc._decorator;
 
+@ccclass("EnemyData")
+class EnemyData {
+    @property({ type: cc.Prefab })
+    enemyPrefab: cc.Prefab = null
+    @property({ type: cc.Integer })
+    enemyRatio: number = 1
+}
+
 @ccclass("WaveData")
 class WaveData {
     @property(cc.Float)
     spawnInterval: number = 0.5;
     @property(cc.Integer)
-    amount: number = 10;
-    @property(cc.Prefab)
-    enemyPrefab: cc.Prefab = null
+    totalEnemyAmount: number = 10;
+    @property({ type: EnemyData })
+    enemyDatas: EnemyData[] = []
 }
 
 @ccclass
@@ -49,11 +57,34 @@ export default class EnemySpawner extends cc.Component {
     }
 
     createCurrentEnemyWave() {
-        const data: WaveData = this.waveDatas[this.currentWave]
+        const waveData: WaveData = this.waveDatas[this.currentWave]
+
+        // loop through all enemy datas by each ratio
+        let currentEnemyData: EnemyData = waveData.enemyDatas[0]
+        let currentEnemyDataIndex: number = 0
+        let enemySpawnCountPerRatio: number = 0
+        const moveToNextEnemyData = function () {
+            if (currentEnemyDataIndex < waveData.enemyDatas.length - 1) {
+                currentEnemyDataIndex++
+            } else {
+                // loop back to first data
+                currentEnemyDataIndex = 0
+            }
+            // reset count for next data
+            enemySpawnCountPerRatio = 0
+            currentEnemyData = waveData.enemyDatas[currentEnemyDataIndex]
+            // skip to nex data if ratio = 0
+            if (!currentEnemyData.enemyRatio) moveToNextEnemyData()
+        }
 
         this.schedule(() => {
-            this.createEnemy(data.enemyPrefab)
-        }, data.spawnInterval, data.amount)
+            this.createEnemy(currentEnemyData.enemyPrefab)
+
+            // if complete spawn ratio of current enemy data
+            if (++enemySpawnCountPerRatio === currentEnemyData.enemyRatio) {
+                moveToNextEnemyData()
+            }
+        }, waveData.spawnInterval, waveData.totalEnemyAmount - 1)
 
         this.currentWave++
         this.updateLabel()
